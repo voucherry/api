@@ -42,7 +42,7 @@ Sending cherries to an Invite Id
 
   $message = null;
   $transfer = VoucherryAPI::sendCherriesToInviteID(
-    "exmaple@voucherry.com",
+    "exmaple",
     20,
     "You've got some cherries",
     "Because you're a loyal customer you've been awarded with 20 cherries.",
@@ -51,6 +51,59 @@ Sending cherries to an Invite Id
   
   if($transfer->success()){
     $message = "Hoary!!! Congratulations you've got 20 cherries!";
+  }else{
+    $message = ":( An error has been detected ". $message->statusMessage;
+  }
+
+```
+
+
+Paying with cherries using an email address
+-------------------------------------------
+
+```php
+
+  $message = null;
+  $transfer = VoucherryAPI::requestCherriesWithEmail(
+    "exmaple@voucherry.com",
+    20,
+    "Item Purchase",
+    "You've purchase an usb stone.",
+    array( "purchase-id" => "prd-0001" )
+  )
+  
+  if($transfer->success()){
+    if( VoucherryAPI::requestCherriesWithInviteId($transfer->id) ){
+      $message = "Hoary!!! Congratulations you've used 20 cherries!";
+    }else{
+      $message = "We couldn't confirm your payment sorry!!!";
+    }
+  }else{
+    $message = ":( An error has been detected ". $message->statusMessage;
+  }
+
+```
+
+Paying with cherries using an invite id
+---------------------------------------
+
+```php
+
+  $message = null;
+  $transfer = VoucherryAPI::requestCherriesWithInviteId(
+    "exmaple",
+    20,
+    "Item Purchase",
+    "You've purchase an usb stone.",
+    array( "purchase-id" => "prd-0001" )
+  )
+  
+  if($transfer->success()){
+    if( VoucherryAPI::requestCherriesWithInviteId($transfer->id) ){
+      $message = "Hoary!!! Congratulations you've used 20 cherries!";
+    }else{
+      $message = "We couldn't confirm your payment sorry!!!";
+    }
   }else{
     $message = ":( An error has been detected ". $message->statusMessage;
   }
