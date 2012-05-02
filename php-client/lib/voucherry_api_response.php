@@ -37,7 +37,7 @@ class VoucherryAPIResponse {
     }else{
       $body = $this->body();
       $decoded_body = json_decode($body, true);
-      return isset($decoded_body) ? $decoded_body["error"] : $this->httpErrorMessage();
+      return isset($decoded_body) ? implode("\n",$decoded_body["errors"]) : $this->httpErrorMessage();
     }
   }
   function httpErrorMessage()
