@@ -7,7 +7,9 @@ All API access is over HTTPS and starts with https://voucherry.com.com/api/v1/
 
 ### Authentication
 
-You can use HTTP Basic Auth to authenticate as a Voucherry user. If you want to pass your API token instead, add auth\_token to submitted arguments. 
+You can use HTTP Basic Auth to authenticate as a Voucherry user by setting the username to your api_token and use any value for password.
+If you don't want to pass your API Token using http headers you can pass your api\_token as a parameter named api\_token in the list of parameters for the http request. 
+
 
 *Note that all requests that need authentication should include the Authentication header or auth\_token parameter in the query string. Unauthenticated requests will return 401 Unauthorized to prevent any sort of private information leakage or api misuse.*
 
@@ -27,6 +29,7 @@ The arguments of an API call can be passed using the following content types:
   * __application/json__ -- the arguments must be encoded as a JSON object and sent in the body of the request ( applies only for POST and PUT requests ).
   * __multipart/form-data__ -- the arguments must be passed as valid multipart form data.
 
+All the responses are JSON encoded
 
 
 ## API Calls
