@@ -65,6 +65,12 @@ __Arguments__:
         <th>metadata(optional)</th>
         <td>An arbitrary hash, associative array or string</td>
     </tr>
+
+    <tr>
+        <th>tracking_number(optional)</th>
+        <td>A string value that is used to track this cherry transfer</td>
+    </tr>
+
     
 </table>
 
@@ -123,6 +129,11 @@ __Arguments__:
         <td>An arbitrary hash, associative array or string</td>
     </tr>
     
+    <tr>
+        <th>tracking_number(optional)</th>
+        <td>A string value that is used to track this cherry transfer</td>
+    </tr>
+
 </table>
 
 *The invite id needs to be a valid voucherry.com invite id.*
