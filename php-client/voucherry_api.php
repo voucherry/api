@@ -3,15 +3,15 @@
 require_once(__DIR__."/resources/cherries_transfer.php");
 require_once(__DIR__."/resources/cherries_request.php");
 
-/** 
+/**
 * API Wrappers to the rest interface published by voucherry.com
-* 
-* @author Vlad Verestiuc Ovidiu <vlad.verestiuc@voucherry.com> 
+*
+* @author Vlad Verestiuc Ovidiu <vlad.verestiuc@voucherry.com>
 * @version 1.0
 * @since 1.0
-* @access public 
+* @access public
 * @copyright Voucherry LLC
-* 
+*
 */
 class VoucherryAPI {
   /**
@@ -22,20 +22,20 @@ class VoucherryAPI {
   * @return none
   */
   public static function configure($api_key, $site = "https://voucherry.com"){
-    VoucherryResource::$site = $site;
-    VoucherryResource::$api_token = $api_key;
+    VoucherryAPIResource::$site = $site;
+    VoucherryAPIResource::$api_token = $api_key;
   }
 
   /**
   * Send Cherries to an email address.
-  * 
-  *   The email address doesn't need to have an account associated on 
-  * voucherry.com platform, an email will be sent to the given email address 
+  *
+  *   The email address doesn't need to have an account associated on
+  * voucherry.com platform, an email will be sent to the given email address
   * that will in your behalf.
-  *   In case of errors the $<CherriesTransfer instance>->statusMessage will 
-  * be set to the according error Message (eq:validation errors, communication 
+  *   In case of errors the $<CherriesTransfer instance>->statusMessage will
+  * be set to the according error Message (eq:validation errors, communication
   * errors).
-  * 
+  *
   * @param string $email_address receivers email address
   * @param integer $cherries_amount amount of cherries that the user will receive
   * @param string $notification_title the title of the notification that the user will receive limit to xxx characters.
@@ -57,12 +57,12 @@ class VoucherryAPI {
 
   /**
   * Send Cherries to an invite id.
-  * 
+  *
   *   The invite id needs to be a valid voucherry.com invite id.
-  *   In case of errors the $<CherriesTransfer instance>->statusMessage will 
-  * be set to the according error Message (eq:validation errors, communication 
+  *   In case of errors the $<CherriesTransfer instance>->statusMessage will
+  * be set to the according error Message (eq:validation errors, communication
   * errors).
-  * 
+  *
   * @param string $email_address receivers email address
   * @param integer $cherries_amount amount of cherries that the user will receive
   * @param string $notification_title the title of the notification that the user will receive limit to xxx characters.
@@ -84,16 +84,16 @@ class VoucherryAPI {
 
   /**
   * Creates a cherries transfer request (cherry charge).
-  * 
+  *
   *   The email address needs to have a account associated on voucherry.com.
   * If this constrain is not satisfied then the ->statusMessage member
   * of the returned resource will be set to an error message.
-  *   In case of errors the $<CherriesRequest instance>->statusMessage will 
-  * be set to the according error Message (eq:validation errors, communication 
+  *   In case of errors the $<CherriesRequest instance>->statusMessage will
+  * be set to the according error Message (eq:validation errors, communication
   * errors).
-  * Important: The cherries will not be transferred right away you need to 
+  * Important: The cherries will not be transferred right away you need to
   * issue a confirmation call so that the actual transfer really happens.
-  * 
+  *
   * @param string $email_address receivers email address
   * @param integer $cherries_amount amount of cherries that the user will receive
   * @param string $reason the reason for the charge.
@@ -114,15 +114,15 @@ class VoucherryAPI {
 
   /**
   * Creates a cherries transfer request (cherry charge).
-  * 
+  *
   *   The invite id needs to have an account associated on voucherry.com.
   * of the returned resource will be set to an error message.
-  *   In case of errors the $<CherriesRequest instance>->statusMessage will 
-  * be set to the according error Message (eq:validation errors, communication 
+  *   In case of errors the $<CherriesRequest instance>->statusMessage will
+  * be set to the according error Message (eq:validation errors, communication
   * errors).
-  * Important: The cherries will not be transferred right away you need to 
+  * Important: The cherries will not be transferred right away you need to
   * issue a confirmation call so that the actual transfer really happens.
-  *  
+  *
   * @param string $email_address receivers email address
   * @param integer $cherries_amount amount of cherries that the user will receive
   * @param string $reason the reason for the charge.
@@ -143,7 +143,7 @@ class VoucherryAPI {
 
   /**
   * Confirms a cherries transfer request (cherry charge).
-  * 
+  *
   * @param string $id a resource identifier created using requestCherriesWithInviteId.
   * @see requestCherriesWithInviteId($invite_id, $cherries_amount, $reason, $description, $metadata)
   * @access public

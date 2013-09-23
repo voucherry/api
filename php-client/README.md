@@ -1,4 +1,4 @@
-Voucherry API - php Client
+Voucherry API - PHP Client
 ==========================
 
 
@@ -12,6 +12,27 @@ Setting up credentials
   VoucherryAPI::configure($api_key);
 ```
 
+Sending cherries to an email account
+------------------------------------
+
+```php
+
+  $message = null;
+  $transfer = VoucherryAPI::sendCherriesToEmailAddress(
+    "exmaple@voucherry.com",
+    20,
+    "You've got some cherries",
+    "Because you're a loyal customer you've been awarded with 20 cherries.",
+    array( "purchase-id" => "prd-0001" )
+  )
+
+  if($transfer->success()){
+    $message = "Hoary!!! Congratulations you've got 20 cherries!";
+  }else{
+    $message = ":( An error has been detected ". $message->statusMessage;
+  }
+
+```
 
 
 Sending cherries to an email account
@@ -27,7 +48,7 @@ Sending cherries to an email account
     "Because you're a loyal customer you've been awarded with 20 cherries.",
     array( "purchase-id" => "prd-0001" )
   )
-  
+
   if($transfer->success()){
     $message = "Hoary!!! Congratulations you've got 20 cherries!";
   }else{
@@ -48,7 +69,7 @@ Sending cherries to an Invite Id
     "Because you're a loyal customer you've been awarded with 20 cherries.",
     array( "purchase-id" => "prd-0001" )
   )
-  
+
   if($transfer->success()){
     $message = "Hoary!!! Congratulations you've got 20 cherries!";
   }else{
@@ -71,7 +92,7 @@ Paying with cherries using an email address
     "You've purchase an usb stone.",
     array( "purchase-id" => "prd-0001" )
   )
-  
+
   if($transfer->success()){
     if( VoucherryAPI::requestCherriesWithInviteId($transfer->id) ){
       $message = "Hoary!!! Congratulations you've used 20 cherries!";
@@ -97,7 +118,7 @@ Paying with cherries using an invite id
     "You've purchase an usb stone.",
     array( "purchase-id" => "prd-0001" )
   )
-  
+
   if($transfer->success()){
     if( VoucherryAPI::requestCherriesWithInviteId($transfer->id) ){
       $message = "Hoary!!! Congratulations you've used 20 cherries!";

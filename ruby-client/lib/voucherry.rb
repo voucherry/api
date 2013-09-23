@@ -1,0 +1,6 @@
+require File.expand_path("../voucherry/api",__FILE__)
+require File.expand_path("../voucherry/configuration",__FILE__)
+require File.expand_path("../voucherry/resource",__FILE__)
+require File.expand_path("../voucherry/account",__FILE__)
+require File.expand_path("../voucherry/reward",__FILE__)
+require File.expand_path("../voucherry/email_reward",__FILE__)
