@@ -28,3 +28,8 @@ API methods
   # Assigns a reward to a supporter
   Voucherry::API.assign_reward(campaign_id, reward_id, uid)
 ```
+
+### Notes
+
+- To use this sample code you need to install the [Rest Client](https://github.com/rest-client/rest-client) and [JSON](http://rubygems.org/gems/json) gems
+- To quickly test the samples in console fire `pry -r ./lib/voucherry.rb` from the `ruby-client` folder
