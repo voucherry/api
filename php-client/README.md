@@ -1,132 +1,35 @@
-Voucherry API - PHP Client
-==========================
+Voucherry API - PHP Sample
+===========================
 
 
 
-Setting up credentials
-----------------------
+Configuration
+-------------
 
 
 ```php
-  $api_key = "my api key";
-  VoucherryAPI::configure($api_key);
+  Voucherry\API::configure(array(
+    "api_key" => "an-api-key"
+  ));
 ```
 
-Sending cherries to an email account
-------------------------------------
+API methods
+-----------
 
-```php
-
-  $message = null;
-  $transfer = VoucherryAPI::sendCherriesToEmailAddress(
-    "exmaple@voucherry.com",
-    20,
-    "You've got some cherries",
-    "Because you're a loyal customer you've been awarded with 20 cherries.",
-    array( "purchase-id" => "prd-0001" )
-  )
-
-  if($transfer->success()){
-    $message = "Hoary!!! Congratulations you've got 20 cherries!";
-  }else{
-    $message = ":( An error has been detected ". $message->statusMessage;
-  }
-
+```PHP
+  # Get your account info
+  Voucherry\API::get_account()
+  # Get a reward info
+  Voucherry\API::get_reward($campaign_id, $reward_id)
+  # Creates a reward
+  Voucherry\API::create_reward($campaign_id, $amount, $expires_at, $identifier="", $event="", $event_description="")
+  # Creates an email reward
+  Voucherry\API::create_email_reward($campaign_id, $email, $amount, $expires_at, $identifier="", $event="", $event_description="")
+  # Assigns a reward to a supporter
+  Voucherry\API::assign_reward($campaign_id, $reward_id, $uid)
 ```
 
+### Notes
 
-Sending cherries to an email account
-------------------------------------
-
-```php
-
-  $message = null;
-  $transfer = VoucherryAPI::sendCherriesToEmailAddress(
-    "exmaple@voucherry.com",
-    20,
-    "You've got some cherries",
-    "Because you're a loyal customer you've been awarded with 20 cherries.",
-    array( "purchase-id" => "prd-0001" )
-  )
-
-  if($transfer->success()){
-    $message = "Hoary!!! Congratulations you've got 20 cherries!";
-  }else{
-    $message = ":( An error has been detected ". $message->statusMessage;
-  }
-
-```
-Sending cherries to an Invite Id
-------------------------------------
-
-```php
-
-  $message = null;
-  $transfer = VoucherryAPI::sendCherriesToInviteID(
-    "exmaple",
-    20,
-    "You've got some cherries",
-    "Because you're a loyal customer you've been awarded with 20 cherries.",
-    array( "purchase-id" => "prd-0001" )
-  )
-
-  if($transfer->success()){
-    $message = "Hoary!!! Congratulations you've got 20 cherries!";
-  }else{
-    $message = ":( An error has been detected ". $message->statusMessage;
-  }
-
-```
-
-
-Paying with cherries using an email address
--------------------------------------------
-
-```php
-
-  $message = null;
-  $transfer = VoucherryAPI::requestCherriesWithEmail(
-    "exmaple@voucherry.com",
-    20,
-    "Item Purchase",
-    "You've purchase an usb stone.",
-    array( "purchase-id" => "prd-0001" )
-  )
-
-  if($transfer->success()){
-    if( VoucherryAPI::requestCherriesWithInviteId($transfer->id) ){
-      $message = "Hoary!!! Congratulations you've used 20 cherries!";
-    }else{
-      $message = "We couldn't confirm your payment sorry!!!";
-    }
-  }else{
-    $message = ":( An error has been detected ". $message->statusMessage;
-  }
-
-```
-
-Paying with cherries using an invite id
----------------------------------------
-
-```php
-
-  $message = null;
-  $transfer = VoucherryAPI::requestCherriesWithInviteId(
-    "exmaple",
-    20,
-    "Item Purchase",
-    "You've purchase an usb stone.",
-    array( "purchase-id" => "prd-0001" )
-  )
-
-  if($transfer->success()){
-    if( VoucherryAPI::requestCherriesWithInviteId($transfer->id) ){
-      $message = "Hoary!!! Congratulations you've used 20 cherries!";
-    }else{
-      $message = "We couldn't confirm your payment sorry!!!";
-    }
-  }else{
-    $message = ":( An error has been detected ". $message->statusMessage;
-  }
-
-```
+- To use this sample code you need PHP >= 5.3.0.
+- To quickly test the samples open the PHP console  with `php -a` and run `require("voucherry.php");` from the `php-client` folder
