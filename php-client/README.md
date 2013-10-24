@@ -9,7 +9,8 @@ Configuration
 
 ```php
   Voucherry\API::configure(array(
-    "api_key" => "an-api-key"
+    "api_key" => "an-api-key",
+    "hostname" => "https://voucherry.com"
   ));
 ```
 
