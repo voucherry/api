@@ -29,11 +29,16 @@ class API
   public function __construct($api_key, $hostname, $options=array()) {
     $this->_api_key = $api_key;
     $this->_hostname = $hostname;
+    $verify_ssl = isset($options["verify_ssl"]) && $options["verify_ssl"]==true;
     $this->connection = new \RestClient(array(
       "base_url" => $hostname,
       "username" => $api_key,
       "password" => "voucherry",
-      "format"   => "json"
+      "format"   => "json",
+      "curl_options" => array(
+        CURLOPT_SSL_VERIFYHOST => $verify_ssl,
+        CURLOPT_SSL_VERIFYPEER => $verify_ssl
+      )
     ));
     $this->connection->register_decoder('json', create_function('$a', "return json_decode(\$a, TRUE);"));
   }
