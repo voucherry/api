@@ -7,5 +7,6 @@ You can find the full documentation at [Voucherry API](http://docs.voucherry.api
 
 ## Samples
 
-- [PHP](https://github.com/voucherry/api/tree/master/php-client)
+- [PHP >= 5.3.0](https://github.com/voucherry/api/tree/master/php-client)
+- [PHP < 5.3.0](https://github.com/voucherry/api/tree/master/php-pre53-client)
 - [Ruby](https://github.com/voucherry/api/tree/master/ruby-client)
