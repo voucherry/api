@@ -39,7 +39,7 @@ module Voucherry
       attrs = @attributes.select do |attr,val|
         not self.class.remote_forbidden_attributes.include?(attr.to_sym)
       end
-      verb = params[:id].nil? ? :post : put
+      verb = @attributes[:id].nil? ? :post : put
       response = Voucherry::API.default_client.send(verb, resource_url, self.class.resource_name => attrs)
       @attributes = (@attributes||{}).merge(JSON.parse(response)[self.class.resource_name]||{})
       self
