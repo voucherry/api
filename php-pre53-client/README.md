@@ -19,9 +19,9 @@ Usage
   # Get a reward info
   $api->get_reward($campaign_id, $reward_id);
   # Creates a reward
-  $api->create_reward($campaign_id, $amount, $expires_at, $identifier="", $event="", $event_description="");
+  $api->create_reward($campaign_id, $amount, $expires_at, $expiration_policy, $cause_uid, $identifier="", $event="", $event_description="");
   # Creates an email reward
-  $api->create_email_reward($campaign_id, $email, $amount, $expires_at, $identifier="", $event="", $event_description="");
+  $api->create_email_reward($campaign_id, $email, $message, $amount, $expires_at, $expiration_policy, $cause_uid, $identifier="", $event="", $event_description="");
   # Assigns a reward to a supporter
   $api->assign_reward($campaign_id, $reward_id, $uid);
 ```

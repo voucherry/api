@@ -46,26 +46,31 @@ class VoucherryAPI
     return $response->decoded_response;
   }
 
-  public function create_reward($campaign_id, $amount, $expires_at, $identifier="", $event="", $event_description="") {
+  public function create_reward($campaign_id, $amount, $expires_at, $expiration_policy, $cause_uid, $identifier="", $event="", $event_description="") {
     $response = $this->post("campaigns/{$campaign_id}/rewards", array("reward" => array(
       "amount" => $amount,
       "expires_at" => $expires_at,
       "identifier" => $identifier,
       "event" => $event,
-      "event_description" => $event_description
+      "event_description" => $event_description,
+      "expiration_policy" => $expiration_policy,
+      "preferred_cause_id" => $cause_uid
     )));
     $response->decode_response();
     return $response->decoded_response;
   }
 
-  public function create_email_reward($campaign_id, $email, $amount, $expires_at, $identifier="", $event="", $event_description="") {
+  public function create_email_reward($campaign_id, $email, $message, $amount, $expires_at, $expiration_policy, $cause_uid, $identifier="", $event="", $event_description="") {
     $response = $this->post("campaigns/{$campaign_id}/email_rewards", array("reward" => array(
       "email" => $email,
+      "message" => $message,
       "amount" => $amount,
       "expires_at" => $expires_at,
       "identifier" => $identifier,
       "event" => $event,
-      "event_description" => $event_description
+      "event_description" => $event_description,
+      "expiration_policy" => $expiration_policy,
+      "preferred_cause_id" => $cause_uid
     )));
     $response->decode_response();
     return $response->decoded_response;
