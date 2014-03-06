@@ -18,15 +18,40 @@ API methods
 
 ```ruby
   # Get your account info
-  Voucherry::API.get_account
+  Voucherry::Account.find()
+
   # Get a reward info
-  Voucherry::API.get_reward(campaign_id, reward_id)
+  Voucherry::Reward.find(campaign_id: campaign_id, id: reward_id)
+
   # Creates a reward
-  Voucherry::API.create_reward(campaign_id, amount, expires_at, identifier=nil, event=nil, event_description=nil)
+  Voucherry::Reward.create({
+    campaign_id: campaign_id,
+    amount: amount,
+    expiration_policy: "autofullfill",
+    preferred_cause_id: "1",
+    expires_at: expires_at,
+    identifier: identifier,
+    event: event,
+    event_description: event_description
+  })
+
   # Creates an email reward
-  Voucherry::API.create_email_reward(campaign_id, email, amount, expires_at, identifier=nil, event=nil, event_description=nil)
+  Voucherry::EmailReward.create({
+    campaign_id: campaign_id,
+    email: email,
+    message: email_message,
+    amount: amount,
+    expiration_policy: "autofullfill",
+    preferred_cause_id: "1",
+    expires_at: expires_at,
+    identifier: identifier,
+    event: event,
+    event_description: event_description
+  })
+
   # Assigns a reward to a supporter
-  Voucherry::API.assign_reward(campaign_id, reward_id, uid)
+  reward = Voucherry::Reward.new(campaign_id: campaign_id, id: reward_id)
+  reward.accept(uid)
 ```
 
 ### Notes
